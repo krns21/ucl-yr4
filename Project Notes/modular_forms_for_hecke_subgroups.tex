@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+
+\title{Modular Forms for Hecke Subgroups}
+\author{Kavinthan}
+
+\input{../header.tex}
+
+\begin{document}
+\maketitle
+{\small
+\noindent\textbf{Hecke Subgroups}\\
+Definition of principal congruence subgroups and Hecke subgroups. Index of principal congruence subgroups. Index of Hecke subgroups. Prime Hecke subgroups and their left coset decompositions. Prime power Hecke subgroups and their left coset decompositions. Fundamental domain under the action of Hecke subgroups and the decomposition.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{Modular and Cusp Forms}\\
+Definition of the factor of automorphy. Definition of modular and cusp forms for Hecke subgroups. Calculating the cusps for the fundamental domains. Width of cusps.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{Examples of Modular Forms}\\
+Modular forms of the same weight from lower to higher levels. Product of modular forms for Hecke subgroups is a modular form. Eisenstein series.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{L-Function of a Cusp Form}\\
+Definition of Dirichlet Series. Bounds on the coefficients of modular forms. Involution of the space of cusp forms. Functional equation for L-functions of modular cusp forms for Hecke subgroups.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{Dimensions of Spaces of Cusp Forms}\\
+The space of modular forms for Hecke subgroups is finite-dimensional. Equations for cusp forms for Hecke subgroups of weight 2.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{Hecke Operators}\\
+Definition of lattice functions. Correspondence between lattice functions and modular functions. Definition of Hecke operator. Hecke operator carries carries modular forms to modular forms and cusp forms to cusp forms. Properties of Hecke Operator. Petersson inner product for cusp forms of Hecke subgroups. Eigenforms for Hecke subgroups. Euler product expansion.\hspace*{\fill}
+
+\vspace{10pt}
+\noindent\textbf{Oldforms and Newforms}\\
+Definition of oldforms and newforms. Statement of the Multiplicity One Theorem. Involution operator carries cusp forms to cusp forms. Subgroups of Hecke subgroups and representatives. Statement and proof of Atkin-Lehner theorem. \hspace*{\fill}}
+\tableofcontents
+\section{Hecke Subgroups}
+We start with the definition of the \textbf{principal congrunce subgroup} $\Gamma(N)$ of $SL(2,\Z)$, for any integer $N \geq 1$, 
+as:
+\[
+    \Gamma(N) = \left\{
+      \begin{pmatrix}
+        a & b\\
+        c & d
+      \end{pmatrix} \in \SL(2,\Z) : \begin{pmatrix}
+        a & b\\
+        c & d
+      \end{pmatrix} \equiv \begin{pmatrix}1 & 0 \\ 0 & 1 \end{pmatrix} \mod N
+    \right\}
+  \]
+Since this is the kernel of the reduction modulo $N$ homomorphism $SL(2,\Z) \rightarrow SL(2,\Z/ N \Z)$, we see that $\Gamma(N)$
+is a normal subgroup, with finite index in $SL(2,\Z)$. We can now define the \textbf{Hecke subgroups} as:
+\[
+    \Gamma_{0}(N) = \left\{
+      \begin{pmatrix}
+        a & b\\
+        c & d
+      \end{pmatrix} \in \SL(2,\Z) : c \equiv 0 \mod N
+    \right\}
+    \]
+We can see that $\Gamma(N) \subseteq \Gamma_0(N) \subset SL(2,\Z)$, and so, $\Gamma_0(N)$ has finite index in $SL(2,\Z)$.
+\subsection[Index of $\Gamma_0(N)$ in $SL(2,\Z)$]{Index of $\Gamma_0(N)$ in $SL(2,\Z)$}
+Let $M(N)$ be the set of all integer matrices of determinant $N$
+\[M(N) = {m \in GL(2,\Z) : \det{m} = N }\]
+And let $M^{*}(N) \subset M(N)$ be the subset of \textbf{primitive} matrices in $M(N)$, those with GCD$(a,b,c,d) = 1$. 
+\begin{lemma}
+    With $\Gamma = SL(2,\Z)$
+    \begin{equation}
+        M^{*}(n) = \Gamma \begin{pmatrix}
+            n & 0 \\
+            0 & 1
+        \end{pmatrix} \Gamma = \bigcup_{\alpha} \Gamma\alpha
+    \end{equation}
+    where $\alpha$ runs over all the integer matrices $\begin{pmatrix}
+        a & b \\ 0 & d
+    \end{pmatrix}$ with $ad=n$, $d>0$, $0 \leq b < d$, and GCD$(a,b,d)=1$. The number of such right cosets $\Gamma \alpha$ is
+    \begin{equation}
+        [M^{*}(n):\Gamma]= n \prod_{\substack{p \mid n \\ p \text{ prime}}} (1 + \frac{1}{p})
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    It can be shown that all nonprimitive elements multiplied by $g \in \Gamma$ on either side
+    is still nonprimitive. That is $\Gamma m \Gamma \in \{M(n) - M^*(n)\}$ for all $m \in \{M(n)-M^*(n)\}$.
+    By taking the complement, the set of all primitive elements $M^*(n)$ is preserved under these operations.
+    
+    From here, we want to show $M^*(n) = \Gamma\begin{pmatrix}
+        n & 0 \\ 0 & 1
+    \end{pmatrix}\Gamma$. From the elementary divisor theorem, we know that for any $A \in M(2,\Z)$
+    there exists $U,V \in SL(2,\Z) = \Gamma$ and $a,d \in \N$ such that 
+    \[UAV = \begin{pmatrix}
+        a & 0 \\ 0 & d
+    \end{pmatrix}\]
+    where $M(n,\Z)$ is the ring of $n \times n $ matrices with integer entries and $a | d$.
+    If we let $d = na$, then we have $\begin{pmatrix}
+        1 & 0 \\ 0 & n
+    \end{pmatrix}$ which corresponds to having $\Z_n$ as the quotient, and so, we could have also used $\begin{pmatrix}
+        n & 0 \\ 0 & 1
+    \end{pmatrix}$. Next, we'll state a lemma from Chapter 8 without proof.
+    \begin{lemma}
+        The matrices $\begin{pmatrix}
+            a & b \\ 0 & d
+        \end{pmatrix}$ with $ad=n$, $d > 0$, and $0 \leq b < d$ are a complete set of coset representatives
+        for the right cosets of $SL(2,\Z)$ on $M(n)$.
+    \end{lemma}
+    Applying this lemma to $\begin{pmatrix}
+        a' & b' \\ c' & d'
+    \end{pmatrix} \in M^*(n)$, we see that   
+\end{proof}
+\end{document}
